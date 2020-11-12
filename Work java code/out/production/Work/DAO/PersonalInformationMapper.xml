@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.PersonalInformationMapper">
+  <resultMap id="BaseResultMap" type="POJO.PersonalInformation">
+    <result column="Title" jdbcType="VARCHAR" property="title" />
+    <result column="FirstName" jdbcType="VARCHAR" property="firstname" />
+    <result column="LastName" jdbcType="VARCHAR" property="lastname" />
+    <result column="IsCard" jdbcType="TINYINT" property="iscard" />
+    <result column="CardNumber" jdbcType="INTEGER" property="cardnumber" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.PersonalInformation">
+    insert into personal_Information (Title, FirstName, LastName, 
+      IsCard, CardNumber)
+    values (#{title,jdbcType=VARCHAR}, #{firstname,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, 
+      #{iscard,jdbcType=TINYINT}, #{cardnumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.PersonalInformation">
+    insert into personal_Information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        Title,
+      </if>
+      <if test="firstname != null">
+        FirstName,
+      </if>
+      <if test="lastname != null">
+        LastName,
+      </if>
+      <if test="iscard != null">
+        IsCard,
+      </if>
+      <if test="cardnumber != null">
+        CardNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="firstname != null">
+        #{firstname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastname != null">
+        #{lastname,jdbcType=VARCHAR},
+      </if>
+      <if test="iscard != null">
+        #{iscard,jdbcType=TINYINT},
+      </if>
+      <if test="cardnumber != null">
+        #{cardnumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getPersonalInformation" resultType="POJO.PersonalInformation">
+        select * from personal_Information;
+  </select>
+
+</mapper>

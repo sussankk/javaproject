@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.ContactDetailsMapper">
+  <resultMap id="BaseResultMap" type="POJO.ContactDetails">
+    <result column="CountryCode" jdbcType="VARCHAR" property="countrycode" />
+    <result column="Telephone" jdbcType="INTEGER" property="telephone" />
+    <result column="EmailAddress" jdbcType="VARCHAR" property="emailaddress" />
+    <result column="IsWantCustomMadeEmail" jdbcType="BIT" property="iswantcustommadeemail" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.ContactDetails">
+    insert into Contact_Details (CountryCode, Telephone, EmailAddress, 
+      IsWantCustomMadeEmail)
+    values (#{countrycode,jdbcType=VARCHAR}, #{telephone,jdbcType=INTEGER}, #{emailaddress,jdbcType=VARCHAR}, 
+      #{iswantcustommadeemail,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.ContactDetails">
+    insert into Contact_Details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="countrycode != null">
+        CountryCode,
+      </if>
+      <if test="telephone != null">
+        Telephone,
+      </if>
+      <if test="emailaddress != null">
+        EmailAddress,
+      </if>
+      <if test="iswantcustommadeemail != null">
+        IsWantCustomMadeEmail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="countrycode != null">
+        #{countrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=INTEGER},
+      </if>
+      <if test="emailaddress != null">
+        #{emailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="iswantcustommadeemail != null">
+        #{iswantcustommadeemail,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getContactDetails" resultType="POJO.ContactDetails">
+    select * from Contact_Details;
+  </select>
+
+</mapper>

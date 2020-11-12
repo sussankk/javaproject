@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.EuropeanAviationMapper">
+  <resultMap id="BaseResultMap" type="POJO.EuropeanAviation">
+    <result column="Id" jdbcType="INTEGER" property="id" />
+    <result column="StartCountry" jdbcType="VARCHAR" property="startcountry" />
+    <result column="EndCountry" jdbcType="VARCHAR" property="endcountry" />
+    <result column="ToOrReturn" jdbcType="BIT" property="toorreturn" />
+    <result column="DateOfDeparture" jdbcType="DATE" property="dateofdeparture" />
+    <result column="ReturnDate" jdbcType="DATE" property="returndate" />
+    <result column="TankType" jdbcType="VARCHAR" property="tanktype" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.EuropeanAviation">
+    insert into European_Aviation (Id, StartCountry, EndCountry, 
+      ToOrReturn, DateOfDeparture, ReturnDate, 
+      TankType)
+    values (#{id,jdbcType=INTEGER}, #{startcountry,jdbcType=VARCHAR}, #{endcountry,jdbcType=VARCHAR}, 
+      #{toorreturn,jdbcType=BIT}, #{dateofdeparture,jdbcType=DATE}, #{returndate,jdbcType=DATE}, 
+      #{tanktype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.EuropeanAviation">
+    insert into European_Aviation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="startcountry != null">
+        StartCountry,
+      </if>
+      <if test="endcountry != null">
+        EndCountry,
+      </if>
+      <if test="toorreturn != null">
+        ToOrReturn,
+      </if>
+      <if test="dateofdeparture != null">
+        DateOfDeparture,
+      </if>
+      <if test="returndate != null">
+        ReturnDate,
+      </if>
+      <if test="tanktype != null">
+        TankType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="startcountry != null">
+        #{startcountry,jdbcType=VARCHAR},
+      </if>
+      <if test="endcountry != null">
+        #{endcountry,jdbcType=VARCHAR},
+      </if>
+      <if test="toorreturn != null">
+        #{toorreturn,jdbcType=BIT},
+      </if>
+      <if test="dateofdeparture != null">
+        #{dateofdeparture,jdbcType=DATE},
+      </if>
+      <if test="returndate != null">
+        #{returndate,jdbcType=DATE},
+      </if>
+      <if test="tanktype != null">
+        #{tanktype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getEuropeanAviation" resultType="POJO.EuropeanAviation">
+    select * from European_Aviation;
+  </select>
+
+</mapper>

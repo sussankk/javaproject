@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	background-image: url("bgg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+h1 {
+	font-family: "Trebuchet MS";
+	font-style: italic;
+	font-size: 70px;
+	font-style: normal;
+	color: #07143F;
+	
+}
+
+h2 {
+	font-family: "Trebuchet MS";
+	font-size: 30px;
+	font-style: normal;
+	color: #07143F;
+	
+}
+
+p {
+	font-family: "Trebuchet MS";
+	font-size: 15px;
+	font-style: normal;
+	color: #07143F;
+	
+}
+
+h3{
+	font-family: "Trebuchet MS";
+	font-size: 15px;
+	font-style: normal;
+	color: #07143F;
+	
+}
+
+
+

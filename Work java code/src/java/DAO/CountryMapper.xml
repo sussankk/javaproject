@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.CountryMapper">
+  <resultMap id="BaseResultMap" type="POJO.Country">
+    <result column="Country" jdbcType="VARCHAR" property="country" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.Country">
+    insert into Country (Country)
+    values (#{country,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.Country">
+    insert into Country
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="country != null">
+        Country,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getCountry" resultType="POJO.Country">
+    select * from Country;
+  </select>
+
+</mapper>
