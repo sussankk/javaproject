@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.ContactdetailsMapper">
+  <resultMap id="BaseResultMap" type="POJO.Contactdetails">
+    <result column="Country" jdbcType="VARCHAR" property="country" />
+    <result column="Telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="IsReceiveAds" jdbcType="VARCHAR" property="isreceiveads" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.Contactdetails">
+    insert into ContactDetails (Country, Telephone, Email, 
+      IsReceiveAds)
+    values (#{country,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{isreceiveads,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.Contactdetails">
+    insert into ContactDetails
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="country != null">
+        Country,
+      </if>
+      <if test="telephone != null">
+        Telephone,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="isreceiveads != null">
+        IsReceiveAds,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isreceiveads != null">
+        #{isreceiveads,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getContactdetails" resultType="POJO.Contactdetails">
+    select * from ContactDetails;
+  </select>
+</mapper>

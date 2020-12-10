@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.PersonalinformationMapper">
+  <resultMap id="BaseResultMap" type="POJO.Personalinformation">
+    <result column="Title" jdbcType="VARCHAR" property="title" />
+    <result column="FirstName" jdbcType="VARCHAR" property="firstname" />
+    <result column="LastName" jdbcType="VARCHAR" property="lastname" />
+    <result column="PassportNum" jdbcType="VARCHAR" property="passportnum" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="Telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="IsMember" jdbcType="VARCHAR" property="ismember" />
+    <result column="MembershipCardNum" jdbcType="VARCHAR" property="membershipcardnum" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.Personalinformation">
+    insert into PersonalInformation (Title, FirstName, LastName, 
+      PassportNum, Email, Telephone, 
+      IsMember, MembershipCardNum)
+    values (#{title,jdbcType=VARCHAR}, #{firstname,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, 
+      #{passportnum,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{ismember,jdbcType=VARCHAR}, #{membershipcardnum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.Personalinformation">
+    insert into PersonalInformation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        Title,
+      </if>
+      <if test="firstname != null">
+        FirstName,
+      </if>
+      <if test="lastname != null">
+        LastName,
+      </if>
+      <if test="passportnum != null">
+        PassportNum,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="telephone != null">
+        Telephone,
+      </if>
+      <if test="ismember != null">
+        IsMember,
+      </if>
+      <if test="membershipcardnum != null">
+        MembershipCardNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="firstname != null">
+        #{firstname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastname != null">
+        #{lastname,jdbcType=VARCHAR},
+      </if>
+      <if test="passportnum != null">
+        #{passportnum,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="ismember != null">
+        #{ismember,jdbcType=VARCHAR},
+      </if>
+      <if test="membershipcardnum != null">
+        #{membershipcardnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getPersonalinformation" resultType="POJO.Personalinformation">
+    select * from PersonalInformation;
+  </select>
+
+</mapper>

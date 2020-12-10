@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.UserMapper">
+  <resultMap id="BaseResultMap" type="POJO.User">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="CreatedAt" jdbcType="TIMESTAMP" property="createdat" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.User">
+    insert into User (ID, Email, Password, 
+      CreatedAt)
+    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{createdat,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.User">
+    insert into User
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="createdat != null">
+        CreatedAt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="createdat != null">
+        #{createdat,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getUser" resultType="POJO.User">
+    select * from User;
+  </select>
+
+</mapper>

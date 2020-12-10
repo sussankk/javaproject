@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.FlightinformationMapper">
+  <resultMap id="BaseResultMap" type="POJO.Flightinformation">
+    <result column="FlightNum" jdbcType="VARCHAR" property="flightnum" />
+    <result column="DepartureDate" jdbcType="DATE" property="departuredate" />
+    <result column="PassportNum" jdbcType="VARCHAR" property="passportnum" />
+  </resultMap>
+  <insert id="insert" parameterType="POJO.Flightinformation">
+    insert into FlightInformation (FlightNum, DepartureDate, PassportNum
+      )
+    values (#{flightnum,jdbcType=VARCHAR}, #{departuredate,jdbcType=DATE}, #{passportnum,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="POJO.Flightinformation">
+    insert into FlightInformation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flightnum != null">
+        FlightNum,
+      </if>
+      <if test="departuredate != null">
+        DepartureDate,
+      </if>
+      <if test="passportnum != null">
+        PassportNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flightnum != null">
+        #{flightnum,jdbcType=VARCHAR},
+      </if>
+      <if test="departuredate != null">
+        #{departuredate,jdbcType=DATE},
+      </if>
+      <if test="passportnum != null">
+        #{passportnum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getFlightinformation" resultType="POJO.Flightinformation">
+    select * from FlightInformation;
+  </select>
+
+</mapper>
